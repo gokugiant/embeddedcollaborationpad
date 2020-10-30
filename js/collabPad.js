@@ -1,4 +1,5 @@
 $(function() {
+	
 	// Initialize Firebase. 
 	// Your web app's Firebase configuration
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -16,10 +17,15 @@ $(function() {
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 
+	var initArduinoTest = '// the setup function runs once when you press reset or power the board\nvoid setup() {\n\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n\n}\n';
+
 	// Get Firebase Database reference. 
 	var firepadRef = firebase.database().ref(); 
 	// Create CodeMirror (with lineWrapping on). 
-	var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true }); 
+	var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true, lineNumbers: true, mode: 'text/x-arduino' }); 
 	// Create Firepad (with rich text toolbar and shortcuts enabled). 
-	var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
+	var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, { richTextShortcuts: false, richTextToolbar: false, defaultText: initArduinoTest });
+
+	
+	
 });
