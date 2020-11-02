@@ -25,7 +25,5 @@ $(function() {
 	var codeMirror = CodeMirror(document.getElementById('firepad-container'), { lineWrapping: true, lineNumbers: true, mode: 'text/x-arduino' }); 
 	// Create Firepad (with rich text toolbar and shortcuts enabled). 
 	var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, { richTextShortcuts: false, richTextToolbar: false, defaultText: initArduinoTest });
-
-	
 	
 });
