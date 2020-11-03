@@ -9,11 +9,6 @@ $user = check_user();
 
 include("templates/header.inc.php");
 ?>
-    
-Hallo <?php echo htmlentities($user['login']); ?> mitglied,<br>
-Herzlich Willkommen im Deinem Gruppenraum!<br><br>
-    
-
   <main role="main" class="inner cover">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
 	  <li class="nav-item" role="presentation">
@@ -33,14 +28,14 @@ Herzlich Willkommen im Deinem Gruppenraum!<br><br>
 	</div>
 
 	<hr/>
-    
+ 
     <div class="container">
 	    <div class="container">
 		  <div class="row">
-		    <div class="col">
+		    <div class="col-4">
 		      WebRTC Placeholder
 		    </div>
-		    <div class="col">
+		    <div class="col-8">
 			    <p>Code share</p>
 		      <div id="firepad-container"></div>
 		    </div>

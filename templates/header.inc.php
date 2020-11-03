@@ -18,25 +18,21 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	
     <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link type="text/css" href="/css/custom.css" rel="stylesheet">
     
   </head>
-  <body class="text-center">
-	<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <body>  
+  	<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
 	  	<nav class="navbar navbar-inverse navbar-static-top">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            <span class="sr-only">Menu</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-leaf logo"></i>ES Collab-Tool</a>
-	        </div>
+	      
+	        
+	        
 	        <?php if(!is_checked_in()): ?>
-	        <div id="navbar" class="navbar-collapse collapse">
+	        
+	        <div class="navbar-header">
+	          <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-leaf logo"></i>ES Collab-Tool </a>
+	        </div>
+	        <div id="navbar">
 	          <form class="navbar-form navbar-right" action="login.php" method="post">
 				<table class="login" role="presentation">
 					<tbody>
@@ -44,17 +40,12 @@
 							<td>							
 								<div class="input-group">
 									<div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-									<input class="form-control" placeholder="E-Mail" name="email" type="email" required>								
+									<input class="form-control" placeholder="Gruppenname" name="username" type="text" required>								
 								</div>
 							</td>
 							<td><input class="form-control" placeholder="Passwort" name="passwort" type="password" value="" required></td>
 							<td><button type="submit" class="btn btn-success">Login</button></td>
-						</tr>
-						<tr>
-							<td><label style="margin-bottom: 0px; font-weight: normal;"><input type="checkbox" name="angemeldet_bleiben" value="remember-me" title="Angemeldet bleiben"  checked="checked" style="margin: 0; vertical-align: middle;" /> <small>Angemeldet bleiben</small></label></td>
-							<td><small><a href="passwortvergessen.php">Passwort vergessen</a></small></td>
-							<td></td>
-						</tr>					
+						</tr>				
 					</tbody>
 				</table>		
 	          
@@ -62,13 +53,19 @@
 	          </form>         
 	        </div><!--/.navbar-collapse -->
 	        <?php else: ?>
-	        <div id="navbar" class="navbar-collapse collapse">
+	        <div class="navbar-header">
+	          <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-leaf logo"></i>ES Collab-Tool</a>
+	        </div>
+	        <div id="navbar">
 	         <ul class="nav navbar-nav navbar-right">     
-	         	<li><a href="internal.php">Interner Bereich</a></li>       
-	            <li><a href="settings.php">Einstellungen</a></li>
-	            <li><a href="logout.php">Logout</a></li>
+	         	<li class="nav-item"><a class="nav-link" href="internal.php">Interner Bereich</a></li>       
+	            <li class="nav-item"><a class="nav-link" href="settings.php">Einstellungen</a></li>
+	            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
 	          </ul>   
 	        </div><!--/.navbar-collapse -->
 	        <?php endif; ?>
-	      </div>
+	     
 	    </nav>
+  </header>
+	
+	<div class="container-fluid">
