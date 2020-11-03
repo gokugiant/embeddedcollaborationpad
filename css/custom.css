@@ -15,6 +15,12 @@ a:focus,
 a:hover {
   color: #fff;
 }
+video {
+  width: 100%;
+  border-radius:15px;
+  margin: 5px 10px;
+  background-color: transparent;
+}
 
 /* Custom default button */
 .btn-secondary,

@@ -19,7 +19,6 @@
 	
     <!-- Custom styles for this template -->
     <link type="text/css" href="/css/custom.css" rel="stylesheet">
-    
   </head>
   <body>  
   	<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">

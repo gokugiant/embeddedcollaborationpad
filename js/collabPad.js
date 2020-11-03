@@ -66,5 +66,40 @@ $(function() {
 	    video: true
 	};
 	
-	connection.openOrJoin(readCookie('firegroupid'));
+	connection.sdpConstraints.mandatory = {
+	    OfferToReceiveAudio: true,
+	    OfferToReceiveVideo: true
+	};
+	
+	videoConstraints = {
+        width: {
+            ideal: 1280
+        },
+        height: {
+            ideal: 720
+        },
+        frameRate: 30
+    };
+    
+    connection.mediaConstraints = {
+	    video: videoConstraints,
+	    audio: true
+	};
+	
+	connection.onstream = function(event) {
+	    $('#videos-container').append( event.mediaElement );
+	};
+	
+	$('#open-or-join-room').click(function() {
+	    this.disabled = true;
+	    
+	    
+		var firegroupid = readCookie('firegroupid');
+	    connection.openOrJoin(firegroupid, function(isRoomExist, roomid, error) {
+	        if(error) {
+	          this.disabled = false;
+	          alert(error);
+	        }
+	    });
+	});
 });

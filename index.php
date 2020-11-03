@@ -34,6 +34,13 @@ include("templates/header.inc.php");
 		  <div class="row">
 		    <div class="col-4">
 		      WebRTC Placeholder
+		      
+		        <section class="make-center">
+			    <div>
+			      <button id="open-or-join-room">Teilnehmen / Start Video Meeting</button>
+			    </div>
+			    
+				<div id="videos-container" class="media-box"></div>
 		    </div>
 		    <div class="col-8">
 			    <p>Code share</p>
