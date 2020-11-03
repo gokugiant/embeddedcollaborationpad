@@ -22,7 +22,11 @@ include("templates/header.inc.php");
 	  </li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
-	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Snippets</div>
+		
+	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+		  <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+		  
+	  </div>
 	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">.MQTT.</div>
 	  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lins</div>
 	</div>
@@ -33,17 +37,21 @@ include("templates/header.inc.php");
 	    <div class="container">
 		  <div class="row">
 		    <div class="col-4">
-		      WebRTC Placeholder
-		      
-		        <section class="make-center">
-			    <div>
-			      <button id="open-or-join-room">Teilnehmen / Start Video Meeting</button>
+		      	<div class="">
+			      <button id="open-or-join-room" class="btn btn-success">
+			      	<i class="fas fa-video"></i> Join meeting
+			      </button>
+			      <button id="leave-room" class="btn btn-danger" style="display: none;">
+			      	<i class="fas fa-times-circle"></i> Leave meeting
+			      </button>
 			    </div>
-			    
-				<div id="videos-container" class="media-box"></div>
+				<div id="video-container" class="media-box"></div>
 		    </div>
 		    <div class="col-8">
-			    <p>Code share</p>
+			  <button class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="Copy w/ jQuery">
+			    <i class="far fa-times-copy"></i> Copy</span>
+			</button> 
+			  <p>Code share</p> 
 		      <div id="firepad-container"></div>
 		    </div>
 		  </div>

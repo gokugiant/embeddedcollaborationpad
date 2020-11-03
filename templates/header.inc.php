@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css" />
 
     <!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	
     <!-- Custom styles for this template -->
-    <link type="text/css" href="/css/custom.css" rel="stylesheet">
+    <link type="text/css" href="/css/custom.css" rel="stylesheet">  
+    
+    <link type="text/css" href="/css/all.min.css" rel="stylesheet">     
+    
   </head>
   <body>  
   	<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
@@ -57,8 +60,6 @@
 	        </div>
 	        <div id="navbar">
 	         <ul class="nav navbar-nav navbar-right">     
-	         	<li class="nav-item"><a class="nav-link" href="internal.php">Interner Bereich</a></li>       
-	            <li class="nav-item"><a class="nav-link" href="settings.php">Einstellungen</a></li>
 	            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
 	          </ul>   
 	        </div><!--/.navbar-collapse -->

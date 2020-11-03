@@ -50,9 +50,7 @@ if(isset($error_msg) && !empty($error_msg)) {
 	<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Gruppenname" value="<?php echo $username_value; ?>" required autofocus>
 	<label for="inputPassword" class="sr-only">Passwort</label>
 	<input type="password" name="passwort" id="inputPassword" class="form-control" placeholder="Passwort" required>
-	<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-	<br>
-	<a href="passwortvergessen.php">Passwort vergessen</a>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button
   </form>
 
 </div> <!-- /container -->

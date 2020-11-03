@@ -11,8 +11,90 @@ var readCookie = function(name) {
     return null;
 };
 
-var initFirebase = function() {
+var initWebRTC = function(){
+	var connection = new RTCMultiConnection();
+
+	// this line is VERY_important
+	connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 	
+	// if you want audio+video conferencing
+	connection.session = {
+	    audio: true,
+	    video: true
+	};
+	
+	connection.sdpConstraints.mandatory = {
+	    OfferToReceiveAudio: true,
+	    OfferToReceiveVideo: true
+	};
+	
+	videoConstraints = {
+        width: {
+            ideal: 1280
+        },
+        height: {
+            ideal: 720
+        },
+        frameRate: 30
+    };
+    
+    connection.mediaConstraints = {
+	    video: videoConstraints,
+	    audio: true
+	};
+	
+	connection.onstream = function(event) {	    
+	    $('#open-or-join-room').hide("slow");
+		$('#leave-room').show();
+		
+		var existing = document.getElementById(event.streamid);
+	    if(existing && existing.parentNode) {
+	      existing.parentNode.removeChild(existing);
+	    }
+	    
+	    $('#video-container').append( event.mediaElement );
+	    
+	    if(event.type === 'local') {
+	      video.volume = 0;
+	      try {
+	          video.setAttributeNode(document.createAttribute('muted'));
+	      } catch (e) {
+	          video.setAttribute('muted', true);
+	      }
+	    }
+	};
+	
+	$('#leave-room').click(function() {
+		$(this).hide("slow");
+		$('#open-or-join-room').show();
+		
+	    // disconnect with all users
+	    connection.getAllParticipants().forEach(function(pid) {
+        	connection.disconnectWith(pid);
+	    });
+	
+	    // stop all local cameras
+	    connection.attachStreams.forEach(function(localStream) {
+	        localStream.stop();
+	    });
+	
+	    // close socket.io connection
+	    connection.closeSocket();
+	});	
+	
+	// Enable the join video button to connect to the videochat
+	$('#open-or-join-room').click(function() {	    
+		var firegroupid = readCookie('firegroupid');
+	    connection.openOrJoin(firegroupid, function(isRoomExist, roomid, error) {
+	        if(error) {
+	          this.disabled = false;
+	          alert(error);
+	        }
+	    });
+	});	
+};
+
+var initFirebase = function(){
 	// Initialize Firebase. 
 	// Your web app's Firebase configuration
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -50,56 +132,32 @@ var initFirebase = function() {
 		userId: userId });
 };
 
+// Code to copy code to clipboard
+var getCodeMirrorJQuery = function(target) {
+    var $target = target instanceof jQuery ? target : $(target);
+    if ($target.length === 0) {
+        throw new Error('Element does not reference a CodeMirror instance.');
+    }
+    
+    if (!$target.hasClass('CodeMirror')) {
+    	if ($target.is('textarea')) {
+            $target = $target.next('.CodeMirror');
+        }
+    }
+
+    return $target.get(0).CodeMirror;
+};
+
 $(function() {
 	if($('#firepad-container').length != 0) {
 		initFirebase();
+		initWebRTC();
 	}
 	
-	var connection = new RTCMultiConnection();
-
-	// this line is VERY_important
-	connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
-	
-	// if you want audio+video conferencing
-	connection.session = {
-	    audio: true,
-	    video: true
-	};
-	
-	connection.sdpConstraints.mandatory = {
-	    OfferToReceiveAudio: true,
-	    OfferToReceiveVideo: true
-	};
-	
-	videoConstraints = {
-        width: {
-            ideal: 1280
-        },
-        height: {
-            ideal: 720
-        },
-        frameRate: 30
-    };
-    
-    connection.mediaConstraints = {
-	    video: videoConstraints,
-	    audio: true
-	};
-	
-	connection.onstream = function(event) {
-	    $('#videos-container').append( event.mediaElement );
-	};
-	
-	$('#open-or-join-room').click(function() {
-	    this.disabled = true;
-	    
-	    
-		var firegroupid = readCookie('firegroupid');
-	    connection.openOrJoin(firegroupid, function(isRoomExist, roomid, error) {
-	        if(error) {
-	          this.disabled = false;
-	          alert(error);
-	        }
-	    });
-	});
+	// Enable the copy button to copy text to clipboard
+    new Clipboard('.clip-btn-jquery', {
+        text: function(trigger) {
+            return getCodeMirrorJQuery('.CodeMirror').getDoc().getValue();
+        }
+    });
 });
