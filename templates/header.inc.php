@@ -24,48 +24,17 @@
     
   </head>
   <body>  
-  	<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
-	  	<nav class="navbar navbar-inverse navbar-static-top">
-	      
-	        
-	        
-	        <?php if(!is_checked_in()): ?>
-	        
+  	<header class="">
+	  	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
 	        <div class="navbar-header">
-	          <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-leaf logo"></i>ES Collab-Tool </a>
+	          <a class="navbar-brand" href="index.php">ES Collab-Tool</a>
 	        </div>
-	        <div id="navbar">
-	          <form class="navbar-form navbar-right" action="login.php" method="post">
-				<table class="login" role="presentation">
-					<tbody>
-						<tr>
-							<td>							
-								<div class="input-group">
-									<div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-									<input class="form-control" placeholder="Gruppenname" name="username" type="text" required>								
-								</div>
-							</td>
-							<td><input class="form-control" placeholder="Passwort" name="passwort" type="password" value="" required></td>
-							<td><button type="submit" class="btn btn-success">Login</button></td>
-						</tr>				
-					</tbody>
-				</table>		
-	          
-	            
-	          </form>         
-	        </div><!--/.navbar-collapse -->
-	        <?php else: ?>
-	        <div class="navbar-header">
-	          <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-leaf logo"></i>ES Collab-Tool</a>
-	        </div>
-	        <div id="navbar">
-	         <ul class="nav navbar-nav navbar-right">     
-	            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
-	          </ul>   
-	        </div><!--/.navbar-collapse -->
+	        <?php if(is_checked_in()): ?>
+	        <ul class="nav justify-content-end">
+		        <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Thats your group ;-)">
+		        	<button class="btn btn-light"><?php echo $_SESSION['username']; ?></span> </li>
+	            <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Logout from collab tool"><a class="nav-link" href="logout.php">Logout</a></li>
+	        </ul>   
 	        <?php endif; ?>
-	     
-	    </nav>
+	    </nav><!--/.navbar-collapse -->
   </header>
-	
-	<div class="container-fluid">

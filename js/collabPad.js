@@ -149,6 +149,9 @@ var getCodeMirrorJQuery = function(target) {
 };
 
 $(function() {
+	// Init the tooltips
+	$('[data-toggle="tooltip"]').tooltip();
+	
 	if($('#firepad-container').length != 0) {
 		initFirebase();
 		initWebRTC();
@@ -157,6 +160,7 @@ $(function() {
 	// Enable the copy button to copy text to clipboard
     new Clipboard('.clip-btn-jquery', {
         text: function(trigger) {
+	        $('.clip-btn-jquery').attr("title", "Copied!").tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle");
             return getCodeMirrorJQuery('.CodeMirror').getDoc().getValue();
         }
     });

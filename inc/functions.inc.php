@@ -48,6 +48,8 @@ function check_user() {
 	$statement = $pdo->prepare("SELECT * FROM users WHERE id = :id");
 	$result = $statement->execute(array('id' => $_SESSION['userid']));
 	$user = $statement->fetch();
+	
+	$_SESSION['username'] = $user['login'];
 	return $user;
 }
 

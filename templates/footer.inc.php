@@ -1,17 +1,13 @@
-		 <hr>
-		  <div class="container">
-		  <footer class="mastfoot mt-auto">
-		    <div class="inner">
-		      <p>Embedded Systems collaboration environment from <a href="https://hrw-fablab.de/">HRW-FabLab</a>, by <a href="http://paproth.biz">F. Paproth</a>.</p>
-		    </div>
-		  </footer>
+<hr>
+<div class="container">
+		<div style="width: 530px;"class="mx-auto">Embedded Systems collaboration environment from <a href="https://hrw-fablab.de/">HRW-FabLab</a>, by <a href="http://paproth.biz">F. Paproth</a>.
 		</div>
-	
+</div>
 		<!-- Add jQuery & UI -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 			
 		<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
-<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+		<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
 
 		<!-- Firebase -->
 		<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
