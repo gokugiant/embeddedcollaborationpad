@@ -157,6 +157,10 @@ $(function() {
 		initWebRTC();
 	}
 	
+	$('#clearButton').click(function(){
+		getCodeMirrorJQuery('.CodeMirror').getDoc().setValue("");
+	});
+	
 	// Enable the copy button to copy text to clipboard
     new Clipboard('.clip-btn-jquery', {
         text: function(trigger) {
