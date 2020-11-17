@@ -31,6 +31,9 @@ include("templates/header.inc.php");
 				</button>
 				<button id="copyButton" class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="" data-original-title="Copy to clipboard">
 					<i class="far fa-copy"></i> Copy</span>
+				</button>
+				<button id="downloadButton" class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="" data-original-title="Copy to clipboard">
+					<i class="fas fa-file-download"></i> Download</span>
 				</button> 
 			</nav>
 			<div id="firepad-container"></div>

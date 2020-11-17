@@ -53,15 +53,6 @@ var initWebRTC = function(){
 	    }
 	    
 	    $('#video-container').append( event.mediaElement );
-	    
-	    if(event.type === 'local') {
-	      video.volume = 0;
-	      try {
-	          video.setAttributeNode(document.createAttribute('muted'));
-	      } catch (e) {
-	          video.setAttribute('muted', true);
-	      }
-	    }
 	};
 	
 	$('#leave-room').click(function() {
@@ -148,6 +139,19 @@ var getCodeMirrorJQuery = function(target) {
     return $target.get(0).CodeMirror;
 };
 
+var createDownload = function(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 $(function() {
 	// Init the tooltips
 	$('[data-toggle="tooltip"]').tooltip();
@@ -156,6 +160,10 @@ $(function() {
 		initFirebase();
 		initWebRTC();
 	}
+	
+	$('#downloadButton').click(function(){
+		createDownload('code.ino', getCodeMirrorJQuery('.CodeMirror').getDoc().getValue());
+	});
 	
 	$('#clearButton').click(function(){
 		getCodeMirrorJQuery('.CodeMirror').getDoc().setValue("");

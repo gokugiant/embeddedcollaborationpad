@@ -23,6 +23,8 @@ if(isset($_POST['username']) && isset($_POST['passwort'])) {
 		setcookie("identifier",$identifier,time()+(3600*24*365)); //Valid for 1 year
 		setcookie("securitytoken",$securitytoken,time()+(3600*24*365)); //Valid for 1 year
 		setcookie("firegroupid",md5($passwort . $username),time()+(3600*24*365)); //Valid for 1 year
+		setcookie("mqttUser",$username,time()+(3600*24*365)); //Valid for 1 year
+		setcookie("mqttPwd",$passwort,time()+(3600*24*365)); //Valid for 1 year
 
 		header("location: index.php");
 		exit;
