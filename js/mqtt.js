@@ -3,6 +3,7 @@ var mqtt;
 var reconnectTimeout = 2000;
 var connected_flag = 0;
 
+
 var mqttOnFailure = function(msg) {
 	console.log("Connection Attempt to Host "+host+"Failed");
 	setTimeout(connectMQTT, reconnectTimeout);
@@ -70,6 +71,65 @@ var mqttConnect = function() {
 	mqtt.onConnectionLost = mqttOnConnectionLost;
 	
 	mqtt.connect(options); //connect
+}
+
+var subscribeToTopoic = function(topic){
+	//document.getElementById("status_messages").innerHTML ="";
+	if (connected_flag==0){
+		out_msg="<b>Not Connected so can't subscribe</b>"
+		console.log(out_msg);
+		//document.getElementById("status_messages").innerHTML = out_msg;
+		return false;
+	}
+	var stopic= document.forms["subs"]["Stopic"].value;
+	console.log("here");
+	var sqos=parseInt(document.forms["subs"]["sqos"].value);
+	if (sqos>2)
+		sqos=0;
+	console.log("Subscribing to topic ="+stopic +" QOS " +sqos);
+	//document.getElementById("status_messages").innerHTML = "Subscribing to topic ="+stopic;
+	var soptions={
+		qos:0,
+	};
+	mqtt.subscribe(topic,soptions);
+	return false;
+}
+
+var send_message = function(topic, msg, pqos){
+	// Get the username to generate a test topic path
+	var testTopic = "ES/WS20/" + $("#mqttUser").val() + "/test-topic";
+	console.log("Generated test topic: " + testTopic);
+	//document.getElementById("status_messages").innerHTML ="";
+	if (connected_flag==0){
+	out_msg="<b>Not Connected so can't send</b>"
+	console.log(out_msg);
+	//document.getElementById("status_messages").innerHTML = out_msg;
+	return false;
+	}
+	if (pqos>2)
+		pqos=0;
+	console.log(msg);
+	//document.getElementById("status_messages").innerHTML="Sending message  "+msg;
+	
+	//var retain_message = document.forms["smessage"]["retain"].value;
+	/*
+	if (document.forms["smessage"]["retain"].checked)
+		retain_flag=true;
+	else
+		retain_flag=false;
+	*/
+	retain_flag=true;
+	
+	message = new Paho.MQTT.Message(msg);
+	if (topic=="")
+		message.destinationName = testTopic;
+	else
+		message.destinationName = topic;
+		
+	message.qos=pqos;
+	message.retained=retain_flag;
+	mqtt.send(message);
+	return false;
 }
 
 $(function() {
