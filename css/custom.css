@@ -2,6 +2,10 @@
 	margin-right: .3em;
 }
 
+#mqttSubTopics .form-row{
+	margin-bottom: .2em;
+}
+
 #textCollumn .btn{
 	padding: 2px;
 	margin-right: 10px;

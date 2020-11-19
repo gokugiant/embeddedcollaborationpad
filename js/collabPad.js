@@ -1,6 +1,17 @@
 // String for a blank Arduino sketch
 var initArduinoTest = '// the setup function runs once when you press reset or power the board\nvoid setup() {\n\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n\n}\n';
 
+// Array remove by value
+var removeA = function(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
 
 // Cookies
 var createCookie = function(name, value, days) {

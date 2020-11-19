@@ -15,20 +15,20 @@
 					<div class="row">
 					    <div class="col-sm-9">
 							<fieldset id="mqttFieldset" class="form-group row">
-								<label for="mqttServer" class="col-sm-2 col-form-label">Server</label>
-								<div class="col-sm-10">
-									<input id="mqttServer" type="text" name="server" class="form-control form-control-sm" value="hrw-fablab.de">
+								<label for="mqttServer" class="col-sm-3 col-form-label">Server</label>
+								<div class="col-sm-9 form-inline">
+									<span class="inputPrefix">ws://</span><input id="mqttServer" type="text" name="server" class="form-control form-control-sm" value="hrw-fablab.de">
 								</div>
-								<label for="mqttPort" class="col-sm-2 col-form-label">Port</label>
-								<div class="col-sm-10">
+								<label for="mqttPort" class="col-sm-3 col-form-label">Port</label>
+								<div class="col-sm-9">
 									<input id="mqttPort" type="number" name="port" class="form-control form-control-sm" value="9001">
 								</div>
-								<label for="mqttUser" class="col-sm-2 col-form-label">Username</label>
-								<div class="col-sm-10">
+								<label for="mqttUser" class="col-sm-3 col-form-label">Username</label>
+								<div class="col-sm-9">
 									<input id="mqttUser" type="text"  name="username" value="<?php echo $_COOKIE["mqttUser"]?>" name="port" class="form-control form-control-sm">
 								</div>
-								<label for="mqttPassword" class="col-sm-2 col-form-label">Password</label>
-								<div class="col-sm-10">
+								<label for="mqttPassword" class="col-sm-3 col-form-label">Password</label>
+								<div class="col-sm-9">
 									<input id="mqttPassword" type="text" name="password"  name="username" value="<?php echo $_COOKIE["mqttPwd"]?>" name="port" class="form-control form-control-sm">
 								</div>
 							</fieldset>
@@ -63,6 +63,12 @@
 	</fieldset>
 	
 	<hr>
+	
+	<div class="form-row">
+		<div class="mx-auto mr-auto col col-md-6">Topic</div>
+		<div class="mx-auto mr-auto col col-md-4">Message</div>
+		<div class="mx-auto mr-auto col-sm-2">Controls</div>
+	</div>
 		
 	<div id="mqttSubTopics"><!-- Subnscribed topics goes here --></div>
 </div>
