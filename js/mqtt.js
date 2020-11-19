@@ -19,6 +19,8 @@ var mqttOnMessageArrived = function(msg){
 var mqttOnConnectionLost = function(){
 	$('#disconnectmqttBtm').hide("slow").prop("disabled", true);
 	$('#connectmqttBtm').show().prop("disabled", false);
+	// Show the server connect tab
+	$('#collapseServerCon').collapse('show');
 	
 	console.log("connection lost");
 	connected_flag=0;
@@ -28,6 +30,8 @@ var mqttOnConnectionLost = function(){
 var connectMQTT = function() {
 	$('#connectmqttBtm').hide("slow").prop("disabled", true);
 	$('#disconnectmqttBtm').show().prop("disabled", false);
+	// Hide the server connect tab
+	$('#collapseServerCon').collapse('hide');
 	
 	// Once a connection has been made, make a subscription and send a message.
 	console.log("Connected ");
@@ -40,6 +44,9 @@ var connectMQTT = function() {
 
 // Disconect from the MQTT Server
 var mqttDisconnect = function(){
+	// Show the server connect tab
+	$('#collapseServerCon').collapse('show');
+	
 	console.log("Try to disconnect from the server");
 	if (connected_flag==1){
 		mqtt.disconnect();
@@ -53,7 +60,7 @@ var mqttDisconnect = function(){
 var mqttConnect = function() {
 	host = $("#mqttServer").val(); 
 	var port = parseInt($("#mqttPort").val());
-	
+		
 	console.log("connecting to "+ host +" "+ port);
 	mqtt = new Paho.MQTT.Client(host,port,"clientjs");
 	
@@ -133,6 +140,14 @@ var send_message = function(topic, msg, pqos){
 }
 
 $(function() {
+	// Alter the caret in the dropdown to visualize that it can be hidden
+	$('#accordionMqttManagement').on('hide.bs.collapse', function () {
+	  $('#mqttServerHideIcon').removeClass("fa-caret-up").addClass("fa-caret-down");
+	})	
+	$('#accordionMqttManagement').on('show.bs.collapse', function () {
+	  $('#mqttServerHideIcon').removeClass("fa-caret-down").addClass("fa-caret-up");
+	})	
+	
 	// Init connect button
 	$('#connectmqttBtm').click(function(){
 		$(this).prop("disabled", true);
