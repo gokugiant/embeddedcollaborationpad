@@ -45,7 +45,7 @@
 	
 	<hr>
 	
-	<fieldset id="mqttControlFieldset" class="" disabled>
+	<fieldset id="mqttControlFieldset" disabled>
 		<div class="row">
 		    <div class="col-sm-9">
 				<fieldset class="form-group row">
@@ -60,15 +60,15 @@
 				<button id="mqttSubBtm" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Subscribe topic" data-toggle="tooltip" title="" data-original-title="Subscribe to a topic"><i class="fas fa-plus"></i></button>
 		    </div>	
 		</div>
-	</fieldset>
-	
-	<hr>
-	
-	<div class="form-row">
-		<div class="mx-auto mr-auto col col-md-6">Topic</div>
-		<div class="mx-auto mr-auto col col-md-4">Message</div>
-		<div class="mx-auto mr-auto col-sm-2">Controls</div>
-	</div>
 		
-	<div id="mqttSubTopics"><!-- Subnscribed topics goes here --></div>
+		<hr>
+		
+		<div class="form-row">
+			<div class="mx-auto mr-auto col col-md-6">Topic</div>
+			<div class="mx-auto mr-auto col col-md-4">Message</div>
+			<div class="mx-auto mr-auto col-sm-2">Controls</div>
+		</div>
+			
+		<div id="mqttSubTopics"><!-- Subnscribed topics goes here --></div>
+	</fieldset>
 </div>

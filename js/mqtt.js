@@ -49,6 +49,7 @@ var mqttOnConnectionLost = function(){
 	$("#mqttFieldset").prop("disabled", false);
 }
 
+// Callback on successful mqtt connection
 var onConnectMQTT = function() {
 	setUiEnableState('connected');
 	
@@ -108,7 +109,7 @@ var getSubTopicsFromCookie = function(){
 	if(subscriptions == null){ // If the cookie is emptmy, create a array
 		subscriptions = [];
 	}else{
-		subscriptions = JSON.parse(readCookie(MQTT_COOKIE_NAME));
+		subscriptions = JSON.parse(subscriptions);
 	}
 	
 	return subscriptions;
@@ -206,13 +207,18 @@ var updateControlClickListener = function(){
 	
 	$('.mqttDelSubBtm').off();
 	
+	// Update the delete buttons
 	$('.mqttDelSubBtm').click(function(){
-		var curRow = $(this).parents('.form-row').remove();
+		var curRow = $(this).parents('.form-row');
+		var topic = curRow.find('.topicName').attr('placeholder');
 		
+		// get the cookie and remove the topic that is marked for delete
+		var subscriptions = JSON.parse(readCookie(MQTT_COOKIE_NAME));
+		removeA(subscriptions, topic);
+		createCookie(MQTT_COOKIE_NAME, JSON.stringify(subscriptions));
 		
+		curRow.remove();	// finally remove the element from DOM
 	});
-
-	
 }
 
 // Init mqtt stuff when DOM is ready
