@@ -25,11 +25,14 @@ include("templates/header.inc.php");
 	    
 	    <div id="textCollumn" class="col-lg-4">
 		    <nav class="nav navbar-light" style="background-color: #e3f2fd;">
+				<button id="newSketchButton" class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="" data-original-title="Black Arduino sketch">
+					<i class="fas fa-file-code"></i> New</span>
+				</button>
 				<div class="mx-auto mr-auto">Code sharing</div> 
 				<button id="clearButton" class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="" data-original-title="Clear clipboard">
 					<i class="fas fa-eraser"></i> Clear</span>
 				</button>
-				<button id="copyButton" class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="" data-original-title="Copy to clipboard">
+				<button id="copyToClipboardButton" class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="" data-original-title="Copy to clipboard">
 					<i class="far fa-copy"></i> Copy</span>
 				</button>
 				<button id="downloadButton" class="btn btn-warning clip-btn-jquery float-right" data-toggle="tooltip" title="" data-original-title="Copy to clipboard">

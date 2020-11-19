@@ -1,3 +1,19 @@
+// String for a blank Arduino sketch
+var initArduinoTest = '// the setup function runs once when you press reset or power the board\nvoid setup() {\n\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n\n}\n';
+
+
+// Cookies
+var createCookie = function(name, value, days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+    }
+    else var expires = "";               
+
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
 var readCookie = function(name) {
     var nameEQ = encodeURIComponent(name) + "=";
     var ca = document.cookie.split(';');
@@ -104,8 +120,6 @@ var initFirebase = function(){
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 
-	var initArduinoTest = '// the setup function runs once when you press reset or power the board\nvoid setup() {\n\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n\n}\n';
-
 	// Get Firebase Database reference. 
 	var firegroupid = readCookie('firegroupid');
 	var firepadRef = firebase.database().ref().child(firegroupid);
@@ -161,6 +175,10 @@ $(function() {
 		initWebRTC();
 	}
 	
+	$('#newSketchButton').click(function(){
+		getCodeMirrorJQuery('.CodeMirror').getDoc().setValue(initArduinoTest);
+	});
+	
 	$('#downloadButton').click(function(){
 		createDownload('code.ino', getCodeMirrorJQuery('.CodeMirror').getDoc().getValue());
 	});
@@ -170,9 +188,9 @@ $(function() {
 	});
 	
 	// Enable the copy button to copy text to clipboard
-    new Clipboard('.clip-btn-jquery', {
+    new Clipboard('#copyToClipboardButton', {
         text: function(trigger) {
-	        $('.clip-btn-jquery').attr("title", "Copied!").tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle");
+	        $('#copyToClipboardButton').attr("title", "Copied!").tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle");
             return getCodeMirrorJQuery('.CodeMirror').getDoc().getValue();
         }
     });

@@ -45,21 +45,24 @@
 	
 	<hr>
 	
-	<div class="row">
-	    <div class="col-sm-9">
-			<fieldset id="mqttControlFieldset" class="form-group row">
-				<label for="mqttServer" class="col-sm-2 col-form-label">Subscribe</label>
-				<!-- Add new topic to subscribe -->
-				<div class="col-sm-10">
-					<input id="newTopicSub" type="text" name="newTopicSub" class="form-control form-control" value="ES/WS20/<?php echo $_COOKIE["mqttUser"]?>/newTopic">
-				</div>
-			</fieldset>
-	    </div>
-	    <div class="col-sm-3">
-			<button id="mqttSubBtm" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Subscribe topic"><i class="fas fa-plus"></i></button>
-	    </div>	
-	</div>
+	<fieldset id="mqttControlFieldset" class="" disabled>
+		<div class="row">
+		    <div class="col-sm-9">
+				<fieldset class="form-group row">
+					<label for="mqttServer" class="col-sm-2 col-form-label">Subscribe</label>
+					<!-- Add new topic to subscribe -->
+					<div class="col-sm-10">
+						<input id="newTopicSub" type="text" name="newTopicSub" class="form-control form-control" value="ES/WS20/<?php echo $_COOKIE["mqttUser"]?>/newTopic">
+					</div>
+				</fieldset>
+		    </div>
+		    <div class="col-sm-3">
+				<button id="mqttSubBtm" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Subscribe topic" data-toggle="tooltip" title="" data-original-title="Subscribe to a topic"><i class="fas fa-plus"></i></button>
+		    </div>	
+		</div>
+	</fieldset>
+	
+	<hr>
 		
-	<div id="mqttConsole"></div>
-
+	<div id="mqttSubTopics"><!-- Subnscribed topics goes here --></div>
 </div>

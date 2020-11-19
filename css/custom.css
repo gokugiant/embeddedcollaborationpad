@@ -1,3 +1,7 @@
+#mqttSubTopics button{
+	margin-right: .3em;
+}
+
 #textCollumn .btn{
 	padding: 2px;
 	margin-right: 10px;
@@ -5,12 +9,12 @@
 	margin-bottom: 5px;
 }
 
-#tutorial iframe{
-	width: 200px;
+#newSketchButton{
+	margin-left: 10px;
 }
 
-.mqttControl{
-	margin-top: 1em;
+#tutorial iframe{
+	width: 200px;
 }
 
 #textCollumn{
