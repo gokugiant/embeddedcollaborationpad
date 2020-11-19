@@ -28,7 +28,7 @@ var setUiEnableState = function(state){
 // Called then the mqtt connection breaks down
 var mqttOnFailure = function(msg) {
 	console.log("Connection Attempt to Host "+host+"Failed");
-	setTimeout(connectMQTT, reconnectTimeout);
+	setTimeout(onConnectMQTT, reconnectTimeout);
 }
 
 // Send/publish messages to the server
@@ -90,6 +90,7 @@ var mqttConnect = function() {
 	console.log("connecting to "+ host);
 	
 	var options = {
+		useSSL: true,
 		timeout: 3,
 		onSuccess: onConnectMQTT,
 		onFailure: mqttOnFailure,
