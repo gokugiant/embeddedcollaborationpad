@@ -85,7 +85,8 @@ var mqttConnect = function() {
 	var port = parseInt($("#mqttPort").val());
 		
 	console.log("connecting to "+ host +" "+ port);
-	mqtt = new Paho.MQTT.Client(host,port,"clientjs");
+	var clientId = window.navigator.userAgent.replace(/\D+/g, '');
+	mqtt = new Paho.MQTT.Client(host,port,clientId);
 	
 	console.log("connecting to "+ host);
 	

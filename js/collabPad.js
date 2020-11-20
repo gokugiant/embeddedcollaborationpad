@@ -38,9 +38,10 @@ var readCookie = function(name) {
     return null;
 };
 
-var initWebRTC = function(){
-	var connection = new RTCMultiConnection();
+var connection = new RTCMultiConnection();
 
+// Initialize the webrtc connection
+var initWebRTC = function(){
 	// this line is VERY_important
 	connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 	
@@ -81,35 +82,6 @@ var initWebRTC = function(){
 	    
 	    $('#video-container').append( event.mediaElement );
 	};
-	
-	$('#leave-room').click(function() {
-		$(this).hide("slow");
-		$('#open-or-join-room').show();
-		
-	    // disconnect with all users
-	    connection.getAllParticipants().forEach(function(pid) {
-        	connection.disconnectWith(pid);
-	    });
-	
-	    // stop all local cameras
-	    connection.attachStreams.forEach(function(localStream) {
-	        localStream.stop();
-	    });
-	
-	    // close socket.io connection
-	    connection.closeSocket();
-	});	
-	
-	// Enable the join video button to connect to the videochat
-	$('#open-or-join-room').click(function() {	    
-		var firegroupid = readCookie('firegroupid');
-	    connection.openOrJoin(firegroupid, function(isRoomExist, roomid, error) {
-	        if(error) {
-	          this.disabled = false;
-	          alert(error);
-	        }
-	    });
-	});	
 };
 
 var initFirebase = function(){
@@ -117,14 +89,14 @@ var initFirebase = function(){
 	// Your web app's Firebase configuration
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 	var firebaseConfig = {
-	  apiKey: "AIzaSyAJEOaUYtHX4KsUUnsrUcmpk2ao3JTkKLY",
-	  authDomain: "embedded-development.firebaseapp.com/",
-	  databaseURL: "https://embedded-development.firebaseio.com",
-	  projectId: "embedded-development",
-	  storageBucket: "embedded-development.appspot.com",
-	  messagingSenderId: "13169664321",
-	  appId: "1:13169664321:web:485c7bea971d669e7741c0",
-	  measurementId: "G-QZKEVYQB3E"
+		apiKey: "AIzaSyAJEOaUYtHX4KsUUnsrUcmpk2ao3JTkKLY",
+		authDomain: "embedded-development.firebaseapp.com/",
+		databaseURL: "https://embedded-development.firebaseio.com",
+		projectId: "embedded-development",
+		storageBucket: "embedded-development.appspot.com",
+		messagingSenderId: "13169664321",
+		appId: "1:13169664321:web:485c7bea971d669e7741c0",
+		measurementId: "G-QZKEVYQB3E"
 	};
 	
 	// Initialize Firebase
@@ -148,7 +120,7 @@ var initFirebase = function(){
 		userId: userId });
 };
 
-// Code to copy code to clipboard
+// copy code to clipboard
 var getCodeMirrorJQuery = function(target) {
     var $target = target instanceof jQuery ? target : $(target);
     if ($target.length === 0) {
@@ -164,17 +136,18 @@ var getCodeMirrorJQuery = function(target) {
     return $target.get(0).CodeMirror;
 };
 
+// Generate a downloadable Arduino sketch from textpad
 var createDownload = function(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
-
-  element.style.display = 'none';
-  document.body.appendChild(element);
-
-  element.click();
-
-  document.body.removeChild(element);
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	element.setAttribute('download', filename);
+	
+	element.style.display = 'none';
+	document.body.appendChild(element);
+	
+	element.click();
+	
+	document.body.removeChild(element);
 }
 
 $(function() {
@@ -183,7 +156,6 @@ $(function() {
 	
 	if($('#firepad-container').length != 0) {
 		initFirebase();
-		initWebRTC();
 	}
 	
 	$('#newSketchButton').click(function(){
@@ -205,4 +177,38 @@ $(function() {
             return getCodeMirrorJQuery('.CodeMirror').getDoc().getValue();
         }
     });
+    
+	$('#leave-room').click(function() {
+		$(this).hide("slow");
+		$('#open-or-join-room').show();
+		
+	    // disconnect with all users
+	    connection.getAllParticipants().forEach(function(pid) {
+        	connection.disconnectWith(pid);
+	    });
+	
+	    // stop all local cameras
+	    connection.attachStreams.forEach(function(localStream) {
+	        localStream.stop();
+	    });
+	    
+	    // Clear the DOM elements
+	    $("#video-container").empty();
+	
+	    // close socket.io connection
+	    connection.closeSocket();
+	});	
+	
+	// Enable the join video button to connect to the videochat
+	$('#open-or-join-room').click(function() {
+		initWebRTC();
+		   
+		var firegroupid = readCookie('firegroupid');
+	    connection.openOrJoin(firegroupid, function(isRoomExist, roomid, error) {
+	        if(error) {
+	          this.disabled = false;
+	          alert(error);
+	        }
+	    });
+	});	
 });
