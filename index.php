@@ -11,7 +11,7 @@ include("templates/header.inc.php");
 ?>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-2 d-lg-block bg-light collapse">
+		<div class="col-lg-2 d-lg-block bg-light">
 			<div class="sidebar-sticky pt-3">
 				<button id="open-or-join-room" class="btn btn-success">
 					<i class="fas fa-video"></i> Join meeting
